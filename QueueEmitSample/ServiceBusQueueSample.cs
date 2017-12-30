@@ -54,6 +54,7 @@ namespace QueueEmitSample
                 // Indicates whether MessagePump should automatically complete the messages after returning from User Callback.
                 // False below indicates the Complete will be handled by the User Callback as in `ProcessMessagesAsync` below.
                 AutoComplete = false
+
             };
             queueClient.RegisterMessageHandler(ProcessMessagesAsync, messageHandlerOptions);
 
