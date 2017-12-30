@@ -29,6 +29,10 @@ namespace QueueEmitSample
             var queue = queueClient.GetQueueReference(queueName);
             await queue.CreateIfNotExistsAsync();
 
+ 
+            var noMessagequeue = queueClient.GetQueueReference("nomessage");
+            await noMessagequeue.CreateIfNotExistsAsync();
+
             // Emitt queue
             var message = new CloudQueueMessage("hello world");
            
@@ -41,8 +45,13 @@ namespace QueueEmitSample
             var peekedMessage = await queue.PeekMessageAsync();
             Console.WriteLine($"Peeked message: {peekedMessage.AsString}");
 
+           // In case there is no message, Storage Queue returns null 
+            var noMessage = await noMessagequeue.PeekMessageAsync();
+            Console.WriteLine($"No message: {noMessage}");
+
             // Delete Queue
             await queue.DeleteAsync();
+            await noMessagequeue.DeleteAsync();
         }
     }
 }
