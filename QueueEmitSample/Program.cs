@@ -11,6 +11,8 @@ namespace QueueEmitSample
         static void Main(string[] args)
         {
             new StorageQueueSample().ExecuteAsync().GetAwaiter().GetResult();
+            new ServiceBusQueueSample().ExecAsync().GetAwaiter().GetResult();
+
         }
     }
 }
